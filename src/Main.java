@@ -13,7 +13,7 @@ import javax.swing.*;
 public class Main extends JFrame implements ActionListener {
    
    
-	//main panel
+   //main panel
    JButton btn_adm, btn_user;
    Administrator adm;
    User user;
@@ -31,7 +31,7 @@ public class Main extends JFrame implements ActionListener {
    String pwd = "madang";
    
    public Main() {
-      super("Ä·ÇÎÄ« ´ë¿©½Ã½ºÅÛ");
+      super("ìº í•‘ì¹´ ëŒ€ì—¬ì‹œìŠ¤í…œ");
       conDB();
       layInit();
       
@@ -41,8 +41,8 @@ public class Main extends JFrame implements ActionListener {
 
    public void layInit() {
 	   
-	  btn_adm = new JButton("°ü¸®ÀÚ");
-      btn_user = new JButton("°í°´");
+      btn_adm = new JButton("ê´€ë¦¬ì");
+      btn_user = new JButton("ê³ ê°");
 	  
       pn_main = new JPanel();
       adm = new Administrator(con);
@@ -62,15 +62,15 @@ public class Main extends JFrame implements ActionListener {
    public void conDB() {
 	      try {
 	         Class.forName("com.mysql.cj.jdbc.Driver");
-	         System.out.println("µå¶óÀÌ¹ö ·Îµå ¼º°ø");
+	         System.out.println("ë“œë¼ì´ë²„ ë¡œë“œ ì„±ê³µ");
 	      } catch (ClassNotFoundException e) {
 	         e.printStackTrace();
 	      }
 	      
-	      try { /* µ¥ÀÌÅÍº£ÀÌ½º¸¦ ¿¬°áÇÏ´Â °úÁ¤ */
-	          System.out.println("µ¥ÀÌÅÍº£ÀÌ½º ¿¬°á ÁØºñ...");
+	      try { /* ë°ì´í„°ë² ì´ìŠ¤ë¥¼ ì—°ê²°í•˜ëŠ” ê³¼ì • */
+	          System.out.println("ë°ì´í„°ë² ì´ìŠ¤ ì—°ê²° ì¤€ë¹„...");
 	          con = DriverManager.getConnection(url, userid, pwd);
-	          System.out.println("µ¥ÀÌÅÍº£ÀÌ½º ¿¬°á ¼º°ø");
+	          System.out.println("ë°ì´í„°ë² ì´ìŠ¤ ì—°ê²° ì„±ê³µ");
 	       } catch (SQLException e1) {
 	          e1.printStackTrace();
 	       }
@@ -89,8 +89,8 @@ public class Main extends JFrame implements ActionListener {
         	
          }
       } catch (Exception e2) {
-         System.out.println("Main Äõ¸® ÀĞ±â ½ÇÆĞ :" + e2);
-         System.out.println("¿À·ù ¹ß»ı!"); 
+         System.out.println("Main ì¿¼ë¦¬ ì½ê¸° ì‹¤íŒ¨ :" + e2);
+         System.out.println("ì˜¤ë¥˜ ë°œìƒ!"); 
       }
    }
 
