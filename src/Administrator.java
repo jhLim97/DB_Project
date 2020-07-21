@@ -16,7 +16,7 @@ public class Administrator extends JFrame implements ActionListener {
    
    JPanel pn; 
    
-   // ¹öÆ° 8°³ - ÃÊ±âÈ­, Ä·ÇÎÄ« ´ë¿©È¸»ç, Ä·ÇÎÄ«, °í°´, Ä·ÇÎÄ« Á¤ºñ¼Ò, Ä·ÇÎÄ«¹İÈ¯, ¼ö¸®, °Ë»ö
+   // ë²„íŠ¼ 8ê°œ - ì´ˆê¸°í™”, ìº í•‘ì¹´ ëŒ€ì—¬íšŒì‚¬, ìº í•‘ì¹´, ê³ ê°, ìº í•‘ì¹´ ì •ë¹„ì†Œ, ìº í•‘ì¹´ë°˜í™˜, ìˆ˜ë¦¬, ê²€ìƒ‰
    JButton btn_init, btn_com, btn_car, btn_cust, btn_shop, btn_return, btn_repair, btn_search;
    
    static Connection con_adm;
@@ -24,7 +24,7 @@ public class Administrator extends JFrame implements ActionListener {
    Statement stmt;
 
    public Administrator(Connection con) {
-      super("°ü¸®ÀÚ");
+      super("ê´€ë¦¬ì");
       layInit();
       con_adm = con;
       setBounds(200, 200, 500, 300);       
@@ -35,22 +35,22 @@ public class Administrator extends JFrame implements ActionListener {
 	  
 	  //shop = new RepairShop(con_adm);
 	   
-      //°ü¸®ÀÚ È­¸é
+      //ê´€ë¦¬ì í™”ë©´
       pn=new JPanel();
       
-      // ¹öÆ° 8°³ ÃÊ±âÈ­
-      btn_init = new JButton("DB ÃÊ±âÈ­");
-      btn_com = new JButton("´ë¿©È¸»ç");
-      btn_car = new JButton("Ä·ÇÎÄ« °ü¸®");
-      btn_cust = new JButton("°í°´ °ü¸®");
-      btn_shop = new JButton("Á¤ºñ¼Ò");
-      btn_return = new JButton("Ä·ÇÎÄ« ¹İÈ¯");
-      btn_repair = new JButton("Ä·ÇÎÄ« ¼ö¸®");
-      btn_search = new JButton("°Ë»ö");
+      // ë²„íŠ¼ 8ê°œ ì´ˆê¸°í™”
+      btn_init = new JButton("DB ì´ˆê¸°í™”");
+      btn_com = new JButton("ëŒ€ì—¬íšŒì‚¬");
+      btn_car = new JButton("ìº í•‘ì¹´ ê´€ë¦¬");
+      btn_cust = new JButton("ê³ ê° ê´€ë¦¬");
+      btn_shop = new JButton("ì •ë¹„ì†Œ");
+      btn_return = new JButton("ìº í•‘ì¹´ ë°˜í™˜");
+      btn_repair = new JButton("ìº í•‘ì¹´ ìˆ˜ë¦¬");
+      btn_search = new JButton("ê²€ìƒ‰");
       
       
       pn.setLayout(new GridLayout(2,4));
-      // ÆĞ³Î¿¡ ¹öÆ° 8°³ Ãß°¡
+      // íŒ¨ë„ì— ë²„íŠ¼ 8ê°œ ì¶”ê°€
       pn.add(btn_init);
       pn.add(btn_com);
       pn.add(btn_car);
@@ -74,16 +74,16 @@ public class Administrator extends JFrame implements ActionListener {
       btn_search.addActionListener(this);
    }
    
-   // ÃÊ±âÈ­
+   // ì´ˆê¸°í™”
    private class ActionListenerInit implements ActionListener {
 	      public void actionPerformed (ActionEvent e) {
 	         
-	         System.out.println("DB ÃÊ±âÈ­ ½ÃÀÛ");
+	         System.out.println("DB ì´ˆê¸°í™” ì‹œì‘");
 	         
 	         try {
 	            stmt = con_adm.createStatement();
 	            
-	            //ÇÁ·ÎÁ§Æ® ºÎºĞ 2020.06.11
+	            //í”„ë¡œì íŠ¸ ë¶€ë¶„ 2020.06.11
 	            stmt.execute("drop table if exists car,car_check_info,car_rent,car_rent_Company,car_rent_has_car_check_info,customers,repair_info,RepairShop;");
 	            
 	            stmt.execute("CREATE TABLE IF NOT EXISTS `madang`.`car_rent_Company` (\r\n" + 
@@ -226,117 +226,117 @@ public class Administrator extends JFrame implements ActionListener {
 	            
 	           
 	            
-	            stmt.executeUpdate("INSERT INTO car_rent_Company VALUES (1, 'CampingCarMaster', '¼­¿ïÆ¯º°½Ã ±¤Áø±¸ ', '02-523-1645', '±è¹ÎÁØ', 'minjun123@naver.com');");
-	            stmt.executeUpdate("INSERT INTO car_rent_Company VALUES (2, 'Ä·ÇÎÁÁ¾Æ¿ä', '°æ±âµµ ¼ö¿ø½Ã Àå¾È±¸ ¼ÛÁ×µ¿ ', '031-245-1254', 'ÀÓ¼­ÁØ', 'LSJ1004@naver.com');");
-	            stmt.executeUpdate("INSERT INTO car_rent_Company VALUES (3, 'Ä·ÇÎ°í°í', 'ÀÎÃµ±¤¿ª½Ã ³²µ¿±¸ ±¸¿ù1µ¿  ', '032-456-7351', 'ÀÌ¿¹ÁØ', 'YJLee77@naver.com');");
-	            stmt.executeUpdate("INSERT INTO car_rent_Company VALUES (4, '¾îµğ·Îµç Ä·ÇÎ', '°æ±âµµ ±¸¸®½Ã ±³¹®µ¿ ', '031-841-4258 ', '°­µµÀ± ', 'DoYun1357@naver.com');");
-	            stmt.executeUpdate("INSERT INTO car_rent_Company VALUES (5, ' MoveCamping', '°æ±âµµ ¾çÆò±º ¾çÆòÀ¾ ', '031-548-7523 ', 'ÀÌÃ¤¿ø ', 'Lee_CHone1@naver.com');");
-	            stmt.executeUpdate("INSERT INTO car_rent_Company VALUES (6, '¿øÁÖÄ·ÇÎÄ« ´ë¿©¼Ò', '°­¿øµµ ¿øÁÖ½Ã Áß¾Óµ¿ ', '033-422-8852', '±è¹Î¼­', 'KMSeo3231@naver.com');");
-	            stmt.executeUpdate("INSERT INTO car_rent_Company VALUES (7, '¼¼Á¾½ÃÄ·ÇÎÄ«', '¼¼Á¾Æ¯º°ÀÚÄ¡½Ã º¸¶÷µ¿  ', '044-220-3020', 'Á¤Áö¹Î', 'JJM0000@naver.com');");
-	            stmt.executeUpdate("INSERT INTO car_rent_Company VALUES (8, 'ºÎ»êÄ·ÇÎÄ«·»Æ®', 'ºÎ»ê±¤¿ª½Ã ±âÀå±º Àå¾ÈÀ¾ ', '051-200-7301', '±è¼±¿ì', 'SSunWoo2@naver.com');");
-	            stmt.executeUpdate("INSERT INTO car_rent_Company VALUES (9, ' ´ëÀüÄ·ÇÎÄ« ´ë¿©¼Ò', '´ëÀü±¤¿ª½Ã ´ë´ö±¸ ºñ·¡µ¿  ', '042-859-9985', 'ÀÌÇö¿ì', 'HSHyunW@naver.com');");
-	            stmt.executeUpdate("INSERT INTO car_rent_Company VALUES (10, '´ë±¸ Ä·ÇÎÄ« ´ë¿©¼Ò', '´ë±¸±¤¿ª½Ã ¼ö¼º±¸ ¸¸ÃÌµ¿ ', '053-705-9243', 'ÀÓ´ÙÀº ', 'DaEunL@naver.com');");
-	            stmt.executeUpdate("INSERT INTO car_rent_Company VALUES (11, 'Á¦ÁÖÄ·ÇÎÄ«', 'Á¦ÁÖÆ¯º°ÀÚÄ¡µµ Á¦ÁÖ½Ã ¿ë´ãµ¿ ', '064-201-0210', 'ÀÌ½Ã¿ì', 'LSWoo909@naver.com');");
-	            stmt.executeUpdate("INSERT INTO car_rent_Company VALUES (12, '¼­±ÍÆ÷·¹ÀüµåÄ·ÇÎÄ«', 'Á¦ÁÖÆ¯º°ÀÚÄ¡µµ ¼­±ÍÆ÷½Ã ¼­È«µ¿  ', '064-038-2022', 'Á¤ÁÖ¿ø', 'Joo1Jung@naver.com');");
-	            stmt.executeUpdate("INSERT INTO car_rent_Company VALUES (13, 'Ã¢¿ø¾îµğµçÄ·ÇÎÄ«', '°æ»ó³²µµ Ã¢¿ø½Ã ¼º»ê±¸ »ïÁ¤ÀÚµ¿ ', '055-541-3207', 'ÀÌ°Ç¿ì', 'gwLee333@naver.com');");
-	            stmt.executeUpdate("INSERT INTO car_rent_Company VALUES (14, '¶°³ª¿äÄ·ÇÎÄ«', '±¤ÁÖ±¤¿ª½Ã ºÏ±¸ ¹®Èïµ¿ ', '062-804-6352', '±è¿¹Àº ', 'YesEun@naver.com');");
-	            stmt.executeUpdate("INSERT INTO car_rent_Company VALUES (15, 'ToGoCampingCar', 'Àü¶óºÏµµ ÀüÁÖ½Ã ´öÁø±¸ ¿ì¾Æµ¿  ', '063-120-9863', '±¸ÇÏ¸°', 'Haryn58@naver.com');");
+	            stmt.executeUpdate("INSERT INTO car_rent_Company VALUES (1, 'CampingCarMaster', 'ì„œìš¸íŠ¹ë³„ì‹œ ê´‘ì§„êµ¬ ', '02-523-1645', 'ê¹€ë¯¼ì¤€', 'minjun123@naver.com');");
+	            stmt.executeUpdate("INSERT INTO car_rent_Company VALUES (2, 'ìº í•‘ì¢‹ì•„ìš”', 'ê²½ê¸°ë„ ìˆ˜ì›ì‹œ ì¥ì•ˆêµ¬ ì†¡ì£½ë™ ', '031-245-1254', 'ì„ì„œì¤€', 'LSJ1004@naver.com');");
+	            stmt.executeUpdate("INSERT INTO car_rent_Company VALUES (3, 'ìº í•‘ê³ ê³ ', 'ì¸ì²œê´‘ì—­ì‹œ ë‚¨ë™êµ¬ êµ¬ì›”1ë™  ', '032-456-7351', 'ì´ì˜ˆì¤€', 'YJLee77@naver.com');");
+	            stmt.executeUpdate("INSERT INTO car_rent_Company VALUES (4, 'ì–´ë””ë¡œë“  ìº í•‘', 'ê²½ê¸°ë„ êµ¬ë¦¬ì‹œ êµë¬¸ë™ ', '031-841-4258 ', 'ê°•ë„ìœ¤ ', 'DoYun1357@naver.com');");
+	            stmt.executeUpdate("INSERT INTO car_rent_Company VALUES (5, ' MoveCamping', 'ê²½ê¸°ë„ ì–‘í‰êµ° ì–‘í‰ì ', '031-548-7523 ', 'ì´ì±„ì› ', 'Lee_CHone1@naver.com');");
+	            stmt.executeUpdate("INSERT INTO car_rent_Company VALUES (6, 'ì›ì£¼ìº í•‘ì¹´ ëŒ€ì—¬ì†Œ', 'ê°•ì›ë„ ì›ì£¼ì‹œ ì¤‘ì•™ë™ ', '033-422-8852', 'ê¹€ë¯¼ì„œ', 'KMSeo3231@naver.com');");
+	            stmt.executeUpdate("INSERT INTO car_rent_Company VALUES (7, 'ì„¸ì¢…ì‹œìº í•‘ì¹´', 'ì„¸ì¢…íŠ¹ë³„ìì¹˜ì‹œ ë³´ëŒë™  ', '044-220-3020', 'ì •ì§€ë¯¼', 'JJM0000@naver.com');");
+	            stmt.executeUpdate("INSERT INTO car_rent_Company VALUES (8, 'ë¶€ì‚°ìº í•‘ì¹´ë ŒíŠ¸', 'ë¶€ì‚°ê´‘ì—­ì‹œ ê¸°ì¥êµ° ì¥ì•ˆì ', '051-200-7301', 'ê¹€ì„ ìš°', 'SSunWoo2@naver.com');");
+	            stmt.executeUpdate("INSERT INTO car_rent_Company VALUES (9, ' ëŒ€ì „ìº í•‘ì¹´ ëŒ€ì—¬ì†Œ', 'ëŒ€ì „ê´‘ì—­ì‹œ ëŒ€ë•êµ¬ ë¹„ë˜ë™  ', '042-859-9985', 'ì´í˜„ìš°', 'HSHyunW@naver.com');");
+	            stmt.executeUpdate("INSERT INTO car_rent_Company VALUES (10, 'ëŒ€êµ¬ ìº í•‘ì¹´ ëŒ€ì—¬ì†Œ', 'ëŒ€êµ¬ê´‘ì—­ì‹œ ìˆ˜ì„±êµ¬ ë§Œì´Œë™ ', '053-705-9243', 'ì„ë‹¤ì€ ', 'DaEunL@naver.com');");
+	            stmt.executeUpdate("INSERT INTO car_rent_Company VALUES (11, 'ì œì£¼ìº í•‘ì¹´', 'ì œì£¼íŠ¹ë³„ìì¹˜ë„ ì œì£¼ì‹œ ìš©ë‹´ë™ ', '064-201-0210', 'ì´ì‹œìš°', 'LSWoo909@naver.com');");
+	            stmt.executeUpdate("INSERT INTO car_rent_Company VALUES (12, 'ì„œê·€í¬ë ˆì „ë“œìº í•‘ì¹´', 'ì œì£¼íŠ¹ë³„ìì¹˜ë„ ì„œê·€í¬ì‹œ ì„œí™ë™  ', '064-038-2022', 'ì •ì£¼ì›', 'Joo1Jung@naver.com');");
+	            stmt.executeUpdate("INSERT INTO car_rent_Company VALUES (13, 'ì°½ì›ì–´ë””ë“ ìº í•‘ì¹´', 'ê²½ìƒë‚¨ë„ ì°½ì›ì‹œ ì„±ì‚°êµ¬ ì‚¼ì •ìë™ ', '055-541-3207', 'ì´ê±´ìš°', 'gwLee333@naver.com');");
+	            stmt.executeUpdate("INSERT INTO car_rent_Company VALUES (14, 'ë– ë‚˜ìš”ìº í•‘ì¹´', 'ê´‘ì£¼ê´‘ì—­ì‹œ ë¶êµ¬ ë¬¸í¥ë™ ', '062-804-6352', 'ê¹€ì˜ˆì€ ', 'YesEun@naver.com');");
+	            stmt.executeUpdate("INSERT INTO car_rent_Company VALUES (15, 'ToGoCampingCar', 'ì „ë¼ë¶ë„ ì „ì£¼ì‹œ ë•ì§„êµ¬ ìš°ì•„ë™  ', '063-120-9863', 'êµ¬í•˜ë¦°', 'Haryn58@naver.com');");
 	            
-	            stmt.executeUpdate("INSERT INTO car VALUES (1, '±Ùº»Ä·ÇÎÄ«', 1325, 6, 'Hondai', 2000, 554883, 50000, 6, STR_TO_DATE('2000-4-12','%Y-%m-%d'),6);");
-	            stmt.executeUpdate("INSERT INTO car VALUES (2, '´Ù°°ÀÌÄ·ÇÎÄ«', 2185, 6, 'Daewon', 2005, 440124, 50000, 2, STR_TO_DATE('2006-3-27','%Y-%m-%d'),2);");
+	            stmt.executeUpdate("INSERT INTO car VALUES (1, 'ê·¼ë³¸ìº í•‘ì¹´', 1325, 6, 'Hondai', 2000, 554883, 50000, 6, STR_TO_DATE('2000-4-12','%Y-%m-%d'),6);");
+	            stmt.executeUpdate("INSERT INTO car VALUES (2, 'ë‹¤ê°™ì´ìº í•‘ì¹´', 2185, 6, 'Daewon', 2005, 440124, 50000, 2, STR_TO_DATE('2006-3-27','%Y-%m-%d'),2);");
 	            stmt.executeUpdate("INSERT INTO car VALUES (3, 'CampingCarseries1', 3207, 8, 'Hondai', 2006, 400223, 55000, 11, STR_TO_DATE('2006-9-21','%Y-%m-%d'),11);");
-	            stmt.executeUpdate("INSERT INTO car VALUES (4, 'ÁÁ¾ÆÄ·ÇÎÄ«', 9582, 6, 'Daewon', 2008, 340124, 55000, 12, STR_TO_DATE('2008-12-10','%Y-%m-%d'),12);");
+	            stmt.executeUpdate("INSERT INTO car VALUES (4, 'ì¢‹ì•„ìº í•‘ì¹´', 9582, 6, 'Daewon', 2008, 340124, 55000, 12, STR_TO_DATE('2008-12-10','%Y-%m-%d'),12);");
 	            stmt.executeUpdate("INSERT INTO car VALUES (5, 'extremeCampCar', 6487, 8, 'Panda', 2010, 300012, 60000, 15, STR_TO_DATE('2010-1-24','%Y-%m-%d'),15);");
-	            stmt.executeUpdate("INSERT INTO car VALUES (6, 'YesssÄ·ÇÎCar', 2203, 6, 'Koogne', 2012, 270124, 60000, 4, STR_TO_DATE('2012-5-25','%Y-%m-%d'),4);");
-	            stmt.executeUpdate("INSERT INTO car VALUES (7, 'YesssÄ·ÇÎCar', 5489, 6, 'Koogne', 2012, 290154, 60000, 14, STR_TO_DATE('2012-5-25','%Y-%m-%d'),14);");
-	            stmt.executeUpdate("INSERT INTO car VALUES (8, 'NiceÄ·ÇÎÄ«', 2367, 8, 'Koogne', 2013, 210489, 65000, 5, STR_TO_DATE('2014-4-21','%Y-%m-%d'),5);");
+	            stmt.executeUpdate("INSERT INTO car VALUES (6, 'Yesssìº í•‘Car', 2203, 6, 'Koogne', 2012, 270124, 60000, 4, STR_TO_DATE('2012-5-25','%Y-%m-%d'),4);");
+	            stmt.executeUpdate("INSERT INTO car VALUES (7, 'Yesssìº í•‘Car', 5489, 6, 'Koogne', 2012, 290154, 60000, 14, STR_TO_DATE('2012-5-25','%Y-%m-%d'),14);");
+	            stmt.executeUpdate("INSERT INTO car VALUES (8, 'Niceìº í•‘ì¹´', 2367, 8, 'Koogne', 2013, 210489, 65000, 5, STR_TO_DATE('2014-4-21','%Y-%m-%d'),5);");
 	            stmt.executeUpdate("INSERT INTO car VALUES (9, 'CampingCarSeries2', 1648, 6, 'Hondai', 2014, 201573, 65000, 10, STR_TO_DATE('2014-6-12','%Y-%m-%d'),10);");
-	            stmt.executeUpdate("INSERT INTO car VALUES (10, 'Ä·ÇÎÄ«¸¶½ºÅÍÁî', 3489, 6, 'Daewon', 2015, 187423, 65000, 1, STR_TO_DATE('2015-1-19','%Y-%m-%d'),1);");
+	            stmt.executeUpdate("INSERT INTO car VALUES (10, 'ìº í•‘ì¹´ë§ˆìŠ¤í„°ì¦ˆ', 3489, 6, 'Daewon', 2015, 187423, 65000, 1, STR_TO_DATE('2015-1-19','%Y-%m-%d'),1);");
 	            stmt.executeUpdate("INSERT INTO car VALUES (11, 'CarForCamping', 4385, 8, 'Panda', 2015, 154682, 65000, 13, STR_TO_DATE('2015-4-8','%Y-%m-%d'),13);");
-	            stmt.executeUpdate("INSERT INTO car VALUES (12, 'Ä·ÇÎÄ«¸¶½ºÅÍÁî', 8632, 6, 'Daewon', 2015, 143287, 65000, 8, STR_TO_DATE('2015-8-27','%Y-%m-%d'),8);");
+	            stmt.executeUpdate("INSERT INTO car VALUES (12, 'ìº í•‘ì¹´ë§ˆìŠ¤í„°ì¦ˆ', 8632, 6, 'Daewon', 2015, 143287, 65000, 8, STR_TO_DATE('2015-8-27','%Y-%m-%d'),8);");
 	            stmt.executeUpdate("INSERT INTO car VALUES (13, 'SpecialCampingCar', 7243, 8, 'Panda', 2016, 103425, 70000, 3, STR_TO_DATE('2016-7-10','%Y-%m-%d'),3);");
 	            stmt.executeUpdate("INSERT INTO car VALUES (14, 'CampingCarSeries3', 6230, 6, 'Hondai', 2018, 82431, 80000, 9, STR_TO_DATE('2018-8-6','%Y-%m-%d'),9);");
 	            stmt.executeUpdate("INSERT INTO car VALUES (15, 'CampingCarSeries3', 1564, 6, 'Hondai', 2018, 62147, 80000, 7, STR_TO_DATE('2018-9-17','%Y-%m-%d'),7);");
 	            
-	            stmt.executeUpdate("INSERT INTO car_check_info VALUES (1,4,\"¹üÆÛ ÆÄ¼Õ\",\"ÀÌ»ó ¹«\",\"ÀÌ»ó ¹«\",\"ÀÌ»ó ¹«\",\"o\");");
-	            stmt.executeUpdate("INSERT INTO car_check_info VALUES (2,9,\"ÀÌ»ó ¹«\",\"ÀÌ»ó ¹«\",\"¾Õ Å¸ÀÌ¾î ÆãÅ©\",\"ÀÌ»ó ¹«\",\"o\");");
-	            stmt.executeUpdate("INSERT INTO car_check_info VALUES (3,7,\"ÀÌ»ó ¹«\",\"µÚ Å¸ÀÌ¾î ÆãÅ©\",\"ÀÌ»ó ¹«\",\"ÀÌ»ó ¹«\",\"o\");");
-	            stmt.executeUpdate("INSERT INTO car_check_info VALUES (4,10,\"¹üÆÛ ÆÄ¼Õ\",\"ÀÌ»ó ¹«\",\"ÀÌ»ó ¹«\",\"ÀÌ»ó ¹«\",\"o\");");
-	            stmt.executeUpdate("INSERT INTO car_check_info VALUES (5,15,\"ÀÌ»ó ¹«\",\"¾ÕÅ¸ÀÌ¾î ÆãÅ©\",\"¾ÕÅ¸ÀÌ¾î ÆãÅ©\",\"ÀÌ»ó ¹«\",\"o\");");
-	            stmt.executeUpdate("INSERT INTO car_check_info VALUES (6,3,\"ÀÌ»ó ¹«\",\"ÀÌ»ó ¹«\",\"ÀÌ»ó ¹«\",\"µµ»ö ¹ş°ÜÁü\",\"o\");");
-	            stmt.executeUpdate("INSERT INTO car_check_info VALUES (7,14,\"ÀÌ»ó ¹«\",\"ÀÌ»ó ¹«\",\"ÀÌ»ó ¹«\",\"µŞÃ¢¹® ÆÄ¼Õ\",\"o\");");
-	            stmt.executeUpdate("INSERT INTO car_check_info VALUES (8,11,\"ÀÌ»ó ¹«\",\"»çÀÌµå ¹Ì·¯ ÆÄ¼Õ\",\"ÀÌ»ó ¹«\",\"ÀÌ»ó ¹«\",\"o\");");
-	            stmt.executeUpdate("INSERT INTO car_check_info VALUES (9,5,\"ÀÌ»ó ¹«\",\"µÚÅ¸ÀÌ¾î ÆãÅ©\",\"µÚÅ¸ÀÌ¾î ÆãÅ©\",\"ÀÌ»ó ¹«\",\"o\");");
-	            stmt.executeUpdate("INSERT INTO car_check_info VALUES (10,2,\"ÀÌ»ó ¹«\",\"ÀÌ»ó ¹«\",\"ÀÌ»ó ¹«\",\"¹üÆÛ ÆÄ¼Õ\",\"o\");");
-	            stmt.executeUpdate("INSERT INTO car_check_info VALUES (11,13,\"ÀÌ»ó ¹«\",\"¾Õ Å¸ÀÌ¾î ÆãÅ©\",\"ÀÌ»ó ¹«\",\"ÀÌ»ó ¹«\",\"o\");");
-	            stmt.executeUpdate("INSERT INTO car_check_info VALUES (12,1,\"ÀÌ»ó ¹«\",\"ÀÌ»ó ¹«\",\"µÚÅ¸ÀÌ¾î ÆãÅ©\",\"¹üÆÛ ÆÄ¼Õ\",\"o\");");
-	            stmt.executeUpdate("INSERT INTO car_check_info VALUES (13,12,\"ÀÌ»ó ¹«\",\"ÀÌ»ó ¹«\",\"»çÀÌµå ¹Ì·¯ ÆÄ¼Õ\",\"ÀÌ»ó ¹«\",\"o\");");
-	            stmt.executeUpdate("INSERT INTO car_check_info VALUES (14,6,\"¹üÆÛÆÄ¼Õ\",\"»çÀÌµå ¹Ì·¯ ÆÄ¼Õ\",\"ÀÌ»ó ¹«\",\"ÀÌ»ó ¹«\",\"o\");");
-	            stmt.executeUpdate("INSERT INTO car_check_info VALUES (15,8,\"¹üÆÛ ÆÄ¼Õ\",\"¾Õ Å¸ÀÌ¾î ÆãÅ©\",\"ÀÌ»ó ¹«\",\"ÀÌ»ó ¹«\",\"o\");");
+	            stmt.executeUpdate("INSERT INTO car_check_info VALUES (1,4,\"ë²”í¼ íŒŒì†\",\"ì´ìƒ ë¬´\",\"ì´ìƒ ë¬´\",\"ì´ìƒ ë¬´\",\"o\");");
+	            stmt.executeUpdate("INSERT INTO car_check_info VALUES (2,9,\"ì´ìƒ ë¬´\",\"ì´ìƒ ë¬´\",\"ì• íƒ€ì´ì–´ í‘í¬\",\"ì´ìƒ ë¬´\",\"o\");");
+	            stmt.executeUpdate("INSERT INTO car_check_info VALUES (3,7,\"ì´ìƒ ë¬´\",\"ë’¤ íƒ€ì´ì–´ í‘í¬\",\"ì´ìƒ ë¬´\",\"ì´ìƒ ë¬´\",\"o\");");
+	            stmt.executeUpdate("INSERT INTO car_check_info VALUES (4,10,\"ë²”í¼ íŒŒì†\",\"ì´ìƒ ë¬´\",\"ì´ìƒ ë¬´\",\"ì´ìƒ ë¬´\",\"o\");");
+	            stmt.executeUpdate("INSERT INTO car_check_info VALUES (5,15,\"ì´ìƒ ë¬´\",\"ì•íƒ€ì´ì–´ í‘í¬\",\"ì•íƒ€ì´ì–´ í‘í¬\",\"ì´ìƒ ë¬´\",\"o\");");
+	            stmt.executeUpdate("INSERT INTO car_check_info VALUES (6,3,\"ì´ìƒ ë¬´\",\"ì´ìƒ ë¬´\",\"ì´ìƒ ë¬´\",\"ë„ìƒ‰ ë²—ê²¨ì§\",\"o\");");
+	            stmt.executeUpdate("INSERT INTO car_check_info VALUES (7,14,\"ì´ìƒ ë¬´\",\"ì´ìƒ ë¬´\",\"ì´ìƒ ë¬´\",\"ë’·ì°½ë¬¸ íŒŒì†\",\"o\");");
+	            stmt.executeUpdate("INSERT INTO car_check_info VALUES (8,11,\"ì´ìƒ ë¬´\",\"ì‚¬ì´ë“œ ë¯¸ëŸ¬ íŒŒì†\",\"ì´ìƒ ë¬´\",\"ì´ìƒ ë¬´\",\"o\");");
+	            stmt.executeUpdate("INSERT INTO car_check_info VALUES (9,5,\"ì´ìƒ ë¬´\",\"ë’¤íƒ€ì´ì–´ í‘í¬\",\"ë’¤íƒ€ì´ì–´ í‘í¬\",\"ì´ìƒ ë¬´\",\"o\");");
+	            stmt.executeUpdate("INSERT INTO car_check_info VALUES (10,2,\"ì´ìƒ ë¬´\",\"ì´ìƒ ë¬´\",\"ì´ìƒ ë¬´\",\"ë²”í¼ íŒŒì†\",\"o\");");
+	            stmt.executeUpdate("INSERT INTO car_check_info VALUES (11,13,\"ì´ìƒ ë¬´\",\"ì• íƒ€ì´ì–´ í‘í¬\",\"ì´ìƒ ë¬´\",\"ì´ìƒ ë¬´\",\"o\");");
+	            stmt.executeUpdate("INSERT INTO car_check_info VALUES (12,1,\"ì´ìƒ ë¬´\",\"ì´ìƒ ë¬´\",\"ë’¤íƒ€ì´ì–´ í‘í¬\",\"ë²”í¼ íŒŒì†\",\"o\");");
+	            stmt.executeUpdate("INSERT INTO car_check_info VALUES (13,12,\"ì´ìƒ ë¬´\",\"ì´ìƒ ë¬´\",\"ì‚¬ì´ë“œ ë¯¸ëŸ¬ íŒŒì†\",\"ì´ìƒ ë¬´\",\"o\");");
+	            stmt.executeUpdate("INSERT INTO car_check_info VALUES (14,6,\"ë²”í¼íŒŒì†\",\"ì‚¬ì´ë“œ ë¯¸ëŸ¬ íŒŒì†\",\"ì´ìƒ ë¬´\",\"ì´ìƒ ë¬´\",\"o\");");
+	            stmt.executeUpdate("INSERT INTO car_check_info VALUES (15,8,\"ë²”í¼ íŒŒì†\",\"ì• íƒ€ì´ì–´ í‘í¬\",\"ì´ìƒ ë¬´\",\"ì´ìƒ ë¬´\",\"o\");");
 	            
-	            stmt.executeUpdate("INSERT INTO RepairShop VALUES (1,\"ÇØÁÖÄ«¼¾ÅÍ\",\"¼­¿ïÆ¯º°½Ã ±¤Áø±¸ Áß°îµ¿\",\"02-452-1325\",\"±è¿ìÀç\",\"WooJ123@naver.com\");");
-	            stmt.executeUpdate("INSERT INTO RepairShop VALUES (2,\"¼ÛÁ×Ä«¼­ºñ½º\",\"°æ±âµµ ¼ö¿ø½Ã Àå¾È±¸ ¼ÛÁ×µ¿\",\"031-215-5432\",\"°­Àç¹Î\",\"JMKang@naver.com\");");
-	            stmt.executeUpdate("INSERT INTO RepairShop VALUES (3,\"¿­¼ºÁ¤ºñ¼Ò\",\"ÀÎÃµ±¤¿ª½Ã ³²µ¿±¸ ±¸¿ùµ¿\",\"032-426-1231\",\"Á¤Áö¿ø\",\"Jone11@naver.com\");");
-	            stmt.executeUpdate("INSERT INTO RepairShop VALUES (4,\"¸¸´ÉÄ«¼¾Å¸\",\"°æ±âµµ ±¸¸®½Ã ±³¹®µ¿\",\"031-813-1148\",\"ÀÌ´ÙÈÆ\",\"LDH332412@naver.com\");");
-	            stmt.executeUpdate("INSERT INTO RepairShop VALUES (5,\"¾çÆòÄ«¼¾ÅÍ\",\"°æ±âµµ ¾çÆò±º ¾çÆòÀ¾\",\"031-543-8853\",\"°íÁ¤¼®\",\"GoodJung@naver.com\");");
-	            stmt.executeUpdate("INSERT INTO RepairShop VALUES (6,\"¹ÌµéÄ«¼¾ÅÍ\",\"°­¿øµµ ¿øÁÖ½Ã Áß¾Óµ¿\",\"033-472-5132\",\"ÀÌÈ£Çö\",\"HHLee@naver.com\");");
-	            stmt.executeUpdate("INSERT INTO RepairShop VALUES (7,\"Æ¯º°Ä«¼¾ÅÍ\",\"¼¼Á¾Æ¯º°ÀÚÄ¡½Ã º¸¶÷µ¿\",\"044-210-8541\",\"ÀÓÀç¹Î\",\"JDIDoit@naver.com\");");
-	            stmt.executeUpdate("INSERT INTO RepairShop VALUES (8,\"Àå¾ÈÄ«¼¾ÅÍÁ¤ºñ¼Ò\",\"ºÎ»ê±¤¿ª½Ã ±âÀå±º Àå¾ÈÀ¾\",\"051-204-0214\",\"¹®Á¾¿ø\",\"BadBoy@naver.com\");");
-	            stmt.executeUpdate("INSERT INTO RepairShop VALUES (9,\"ÀåÀÎÄ«¼¾ÅÍ\",\"´ëÀü±¤¿ª½Ã ´ë´ö±¸ ºñ·¡µ¿\",\"042-853-1215\",\"±èÈñÅÂ\",\"HTae@naver.com\");");
-	            stmt.executeUpdate("INSERT INTO RepairShop VALUES (10,\"¸¸¹°Ä«¼¾ÅÍ\",\"´ë±¸±¤¿ª½Ã ¼ö¼º±¸ ¸¸ÃÌµ¿\",\"053-710-9555\",\"¹ÚÁö¼ö\",\"Jisso@naver.com\");");
-	            stmt.executeUpdate("INSERT INTO RepairShop VALUES (11,\"ÇÏÀÌÄ«¼¾ÅÍ\",\"Á¦ÁÖÆ¯º°ÀÚÄ¡µµ Á¦ÁÖ½Ã ¿ë´ãµ¿\",\"064-211-5275\",\"À±Ã¢¿­\",\"CHang999@naver.com\");");
-	            stmt.executeUpdate("INSERT INTO RepairShop VALUES (12,\"Æò»ıÄ«¼¾ÅÍ\",\"Á¦ÁÖÆ¯º°ÀÚÄ¡µµ ¼­±ÍÆ÷½Ã ¼­È«µ¿\",\"064-033-8578\",\"½ÉÁöÈÆ\",\"SimJH@naver.com\");");
-	            stmt.executeUpdate("INSERT INTO RepairShop VALUES (13,\"»ïÁ¤Ä«¼¾ÅÍ\",\"°æ»ó³²µµ Ã¢¿ø½Ã ¼º»ê±¸ »ïÁ¤ÀÚµ¿\",\"055-541-1502\",\"¹Ú±âÈÄ\",\"Weatherman@naver.com\");");
-	            stmt.executeUpdate("INSERT INTO RepairShop VALUES (14,\"ÇìµåÄ«¼¾ÅÍ\",\"±¤ÁÖ±¤¿ª½Ã ºÏ±¸ ¹®Èïµ¿\",\"062-803-4487\",\"°í¿µÈÆ\",\"Go0H@naver.com\");");
-	            stmt.executeUpdate("INSERT INTO RepairShop VALUES (15,\"¿ì¿ÍÄ«¼¾ÅÍ\",\"Àü¶óºÏµµ ÀüÁÖ½Ã ´öÁø±¸ ¿ì¾Æµ¿\",\"063-120-9863\",\"Á¤°æÃ¶\",\"GCheol@naver.com\");");
+	            stmt.executeUpdate("INSERT INTO RepairShop VALUES (1,\"í•´ì£¼ì¹´ì„¼í„°\",\"ì„œìš¸íŠ¹ë³„ì‹œ ê´‘ì§„êµ¬ ì¤‘ê³¡ë™\",\"02-452-1325\",\"ê¹€ìš°ì¬\",\"WooJ123@naver.com\");");
+	            stmt.executeUpdate("INSERT INTO RepairShop VALUES (2,\"ì†¡ì£½ì¹´ì„œë¹„ìŠ¤\",\"ê²½ê¸°ë„ ìˆ˜ì›ì‹œ ì¥ì•ˆêµ¬ ì†¡ì£½ë™\",\"031-215-5432\",\"ê°•ì¬ë¯¼\",\"JMKang@naver.com\");");
+	            stmt.executeUpdate("INSERT INTO RepairShop VALUES (3,\"ì—´ì„±ì •ë¹„ì†Œ\",\"ì¸ì²œê´‘ì—­ì‹œ ë‚¨ë™êµ¬ êµ¬ì›”ë™\",\"032-426-1231\",\"ì •ì§€ì›\",\"Jone11@naver.com\");");
+	            stmt.executeUpdate("INSERT INTO RepairShop VALUES (4,\"ë§ŒëŠ¥ì¹´ì„¼íƒ€\",\"ê²½ê¸°ë„ êµ¬ë¦¬ì‹œ êµë¬¸ë™\",\"031-813-1148\",\"ì´ë‹¤í›ˆ\",\"LDH332412@naver.com\");");
+	            stmt.executeUpdate("INSERT INTO RepairShop VALUES (5,\"ì–‘í‰ì¹´ì„¼í„°\",\"ê²½ê¸°ë„ ì–‘í‰êµ° ì–‘í‰ì\",\"031-543-8853\",\"ê³ ì •ì„\",\"GoodJung@naver.com\");");
+	            stmt.executeUpdate("INSERT INTO RepairShop VALUES (6,\"ë¯¸ë“¤ì¹´ì„¼í„°\",\"ê°•ì›ë„ ì›ì£¼ì‹œ ì¤‘ì•™ë™\",\"033-472-5132\",\"ì´í˜¸í˜„\",\"HHLee@naver.com\");");
+	            stmt.executeUpdate("INSERT INTO RepairShop VALUES (7,\"íŠ¹ë³„ì¹´ì„¼í„°\",\"ì„¸ì¢…íŠ¹ë³„ìì¹˜ì‹œ ë³´ëŒë™\",\"044-210-8541\",\"ì„ì¬ë¯¼\",\"JDIDoit@naver.com\");");
+	            stmt.executeUpdate("INSERT INTO RepairShop VALUES (8,\"ì¥ì•ˆì¹´ì„¼í„°ì •ë¹„ì†Œ\",\"ë¶€ì‚°ê´‘ì—­ì‹œ ê¸°ì¥êµ° ì¥ì•ˆì\",\"051-204-0214\",\"ë¬¸ì¢…ì›\",\"BadBoy@naver.com\");");
+	            stmt.executeUpdate("INSERT INTO RepairShop VALUES (9,\"ì¥ì¸ì¹´ì„¼í„°\",\"ëŒ€ì „ê´‘ì—­ì‹œ ëŒ€ë•êµ¬ ë¹„ë˜ë™\",\"042-853-1215\",\"ê¹€í¬íƒœ\",\"HTae@naver.com\");");
+	            stmt.executeUpdate("INSERT INTO RepairShop VALUES (10,\"ë§Œë¬¼ì¹´ì„¼í„°\",\"ëŒ€êµ¬ê´‘ì—­ì‹œ ìˆ˜ì„±êµ¬ ë§Œì´Œë™\",\"053-710-9555\",\"ë°•ì§€ìˆ˜\",\"Jisso@naver.com\");");
+	            stmt.executeUpdate("INSERT INTO RepairShop VALUES (11,\"í•˜ì´ì¹´ì„¼í„°\",\"ì œì£¼íŠ¹ë³„ìì¹˜ë„ ì œì£¼ì‹œ ìš©ë‹´ë™\",\"064-211-5275\",\"ìœ¤ì°½ì—´\",\"CHang999@naver.com\");");
+	            stmt.executeUpdate("INSERT INTO RepairShop VALUES (12,\"í‰ìƒì¹´ì„¼í„°\",\"ì œì£¼íŠ¹ë³„ìì¹˜ë„ ì„œê·€í¬ì‹œ ì„œí™ë™\",\"064-033-8578\",\"ì‹¬ì§€í›ˆ\",\"SimJH@naver.com\");");
+	            stmt.executeUpdate("INSERT INTO RepairShop VALUES (13,\"ì‚¼ì •ì¹´ì„¼í„°\",\"ê²½ìƒë‚¨ë„ ì°½ì›ì‹œ ì„±ì‚°êµ¬ ì‚¼ì •ìë™\",\"055-541-1502\",\"ë°•ê¸°í›„\",\"Weatherman@naver.com\");");
+	            stmt.executeUpdate("INSERT INTO RepairShop VALUES (14,\"í—¤ë“œì¹´ì„¼í„°\",\"ê´‘ì£¼ê´‘ì—­ì‹œ ë¶êµ¬ ë¬¸í¥ë™\",\"062-803-4487\",\"ê³ ì˜í›ˆ\",\"Go0H@naver.com\");");
+	            stmt.executeUpdate("INSERT INTO RepairShop VALUES (15,\"ìš°ì™€ì¹´ì„¼í„°\",\"ì „ë¼ë¶ë„ ì „ì£¼ì‹œ ë•ì§„êµ¬ ìš°ì•„ë™\",\"063-120-9863\",\"ì •ê²½ì² \",\"GCheol@naver.com\");");
 	            
-	            stmt.executeUpdate("INSERT INTO customers VALUES (762531,\"ÀÓ¼­Çö\",\"¼­¿ïÆ¯º°½Ã ¼ºµ¿±¸ ¿ë´äµ¿\",\"010-8465-2046\",\"SH2046@naver.com\");");
-	            stmt.executeUpdate("INSERT INTO customers VALUES (620154,\"Á¤¿¹ÁØ\",\"¼­¿ïÆ¯º°½Ã °ü¾Ç±¸ ºÀÃµµ¿\",\"010-2432-0125\",\"Yejun0125@naver.com\");");
-	            stmt.executeUpdate("INSERT INTO customers VALUES (905432,\"ÀÌµµÀ±\",\"°æ±âµµ ¼º³²½Ã ºĞ´ç±¸ ¼­Çöµ¿\",\"010-2105-9982\",\"DoYunLee2105@naver.com\");");
-	            stmt.executeUpdate("INSERT INTO customers VALUES (320156,\"±èÁÖ¿ø\",\"ºÎ»ê±¤¿ª½Ã ºÎ»êÁø±¸ ¿¬Áöµ¿\",\"010-7523-2015\",\"KJone631@naver.com\");");
-	            stmt.executeUpdate("INSERT INTO customers VALUES (426583,\"°­ÁØ¼­\",\"°æ»ó³²µµ Ã¢¿ø½Ã ¼º»ê±¸ °¡À½µ¿\",\"010-8542-0012\",\"KKJunSeo012@naver.com\");");
-	            stmt.executeUpdate("INSERT INTO customers VALUES (201603,\"ÀÌÁØ¿ì\",\"Àü¶ó³²µµ ¼øÃµ½Ã Á¶°îµ¿\",\"010-4352-0156\"   ,\"HandsomJW@naver.com\");");
-	            stmt.executeUpdate("INSERT INTO customers VALUES (302154,\"°­Çö¿ì\",\"Àü¶ó³²µµ ¸ñÆ÷½Ã »êÁ¤µ¿\",\"010-4852-2356\",\"KangHW@naver.com\");");
-	            stmt.executeUpdate("INSERT INTO customers VALUES (301264,\"±ÇÁöÈÆ\",\"Àü¶óºÏµµ ÀüÁÖ½Ã ¿Ï»ê±¸ ÁßÈ­»ê2µ¿\",\"010-9421-0605\",\"JiiHun65@naver.com\");");
-	            stmt.executeUpdate("INSERT INTO customers VALUES (532015,\"Á¤¼ö¾Æ\",\"ÃæÃ»³²µµ º¸·É½Ã ´ëÃµµ¿\",\"010-3287-9182\",\"SuA32@naver.com\");");
-	            stmt.executeUpdate("INSERT INTO customers VALUES (862513,\"Àå´ÙÀº\",\"ÃæÃ»³²µµ ÅÂ¾È±º ÅÂ¾ÈÀ¾\",\"010-0248-5347\",\"DAEUN2485347@naver.com\");");
-	            stmt.executeUpdate("INSERT INTO customers VALUES (201543,\"ÀÓÇöÁØ\",\"°æ±âµµ ¾È»ê½Ã ´Ü¿ø±¸\",\"010-9820-0031\",\"Lim0031@naver.com\");");
-	            stmt.executeUpdate("INSERT INTO customers VALUES (753216,\"°­¼­Áø\",\"Á¦ÁÖÆ¯º°ÀÚÄ¡µµ Á¦ÁÖ½Ã ¿À¶óµ¿\",\"010-5103-0569\",\"SeoJinee@naver.com\");");
-	            stmt.executeUpdate("INSERT INTO customers VALUES (102436,\"±è¿¬¿ì\",\"Á¦ÁÖÆ¯º°ÀÚÄ¡µµ ¼­±ÍÆ÷½Ã ¼Û»êµ¿\",\"010-0504-0104\",\"KKKWoo@naver.com\");");
-	            stmt.executeUpdate("INSERT INTO customers VALUES (510546,\"±è¿¹¼­\",\"ÃæÃ»ºÏµµ ÃæÁÖ½Ã ±³Çöµ¿\",\"010-7821-3582\",\"SkyCastle7821@naver.com\");");
-	            stmt.executeUpdate("INSERT INTO customers VALUES (105468,\"ÀÌ°Ç¿ì\",\"°æ±âµµ ÀÇÁ¤ºÎ½Ã ½Å°îµ¿\",\"010-7744-5521\",\"7744Gun@naver.com\");");
+	            stmt.executeUpdate("INSERT INTO customers VALUES (762531,\"ì„ì„œí˜„\",\"ì„œìš¸íŠ¹ë³„ì‹œ ì„±ë™êµ¬ ìš©ë‹µë™\",\"010-8465-2046\",\"SH2046@naver.com\");");
+	            stmt.executeUpdate("INSERT INTO customers VALUES (620154,\"ì •ì˜ˆì¤€\",\"ì„œìš¸íŠ¹ë³„ì‹œ ê´€ì•…êµ¬ ë´‰ì²œë™\",\"010-2432-0125\",\"Yejun0125@naver.com\");");
+	            stmt.executeUpdate("INSERT INTO customers VALUES (905432,\"ì´ë„ìœ¤\",\"ê²½ê¸°ë„ ì„±ë‚¨ì‹œ ë¶„ë‹¹êµ¬ ì„œí˜„ë™\",\"010-2105-9982\",\"DoYunLee2105@naver.com\");");
+	            stmt.executeUpdate("INSERT INTO customers VALUES (320156,\"ê¹€ì£¼ì›\",\"ë¶€ì‚°ê´‘ì—­ì‹œ ë¶€ì‚°ì§„êµ¬ ì—°ì§€ë™\",\"010-7523-2015\",\"KJone631@naver.com\");");
+	            stmt.executeUpdate("INSERT INTO customers VALUES (426583,\"ê°•ì¤€ì„œ\",\"ê²½ìƒë‚¨ë„ ì°½ì›ì‹œ ì„±ì‚°êµ¬ ê°€ìŒë™\",\"010-8542-0012\",\"KKJunSeo012@naver.com\");");
+	            stmt.executeUpdate("INSERT INTO customers VALUES (201603,\"ì´ì¤€ìš°\",\"ì „ë¼ë‚¨ë„ ìˆœì²œì‹œ ì¡°ê³¡ë™\",\"010-4352-0156\"   ,\"HandsomJW@naver.com\");");
+	            stmt.executeUpdate("INSERT INTO customers VALUES (302154,\"ê°•í˜„ìš°\",\"ì „ë¼ë‚¨ë„ ëª©í¬ì‹œ ì‚°ì •ë™\",\"010-4852-2356\",\"KangHW@naver.com\");");
+	            stmt.executeUpdate("INSERT INTO customers VALUES (301264,\"ê¶Œì§€í›ˆ\",\"ì „ë¼ë¶ë„ ì „ì£¼ì‹œ ì™„ì‚°êµ¬ ì¤‘í™”ì‚°2ë™\",\"010-9421-0605\",\"JiiHun65@naver.com\");");
+	            stmt.executeUpdate("INSERT INTO customers VALUES (532015,\"ì •ìˆ˜ì•„\",\"ì¶©ì²­ë‚¨ë„ ë³´ë ¹ì‹œ ëŒ€ì²œë™\",\"010-3287-9182\",\"SuA32@naver.com\");");
+	            stmt.executeUpdate("INSERT INTO customers VALUES (862513,\"ì¥ë‹¤ì€\",\"ì¶©ì²­ë‚¨ë„ íƒœì•ˆêµ° íƒœì•ˆì\",\"010-0248-5347\",\"DAEUN2485347@naver.com\");");
+	            stmt.executeUpdate("INSERT INTO customers VALUES (201543,\"ì„í˜„ì¤€\",\"ê²½ê¸°ë„ ì•ˆì‚°ì‹œ ë‹¨ì›êµ¬\",\"010-9820-0031\",\"Lim0031@naver.com\");");
+	            stmt.executeUpdate("INSERT INTO customers VALUES (753216,\"ê°•ì„œì§„\",\"ì œì£¼íŠ¹ë³„ìì¹˜ë„ ì œì£¼ì‹œ ì˜¤ë¼ë™\",\"010-5103-0569\",\"SeoJinee@naver.com\");");
+	            stmt.executeUpdate("INSERT INTO customers VALUES (102436,\"ê¹€ì—°ìš°\",\"ì œì£¼íŠ¹ë³„ìì¹˜ë„ ì„œê·€í¬ì‹œ ì†¡ì‚°ë™\",\"010-0504-0104\",\"KKKWoo@naver.com\");");
+	            stmt.executeUpdate("INSERT INTO customers VALUES (510546,\"ê¹€ì˜ˆì„œ\",\"ì¶©ì²­ë¶ë„ ì¶©ì£¼ì‹œ êµí˜„ë™\",\"010-7821-3582\",\"SkyCastle7821@naver.com\");");
+	            stmt.executeUpdate("INSERT INTO customers VALUES (105468,\"ì´ê±´ìš°\",\"ê²½ê¸°ë„ ì˜ì •ë¶€ì‹œ ì‹ ê³¡ë™\",\"010-7744-5521\",\"7744Gun@naver.com\");");
 	            
-	            stmt.executeUpdate("INSERT INTO car_rent VALUES (1,4,762531,12,\"2020-02-10\",\"2020-02-15\",55000*6,\"2020-02-09\",\"¹° 2L * 12\",1000*12,762531,4,12);");
-	            stmt.executeUpdate("INSERT INTO car_rent VALUES (2,9,620154,10,\"2020-02-14\",\"2020-02-20\",65000*7,\"2020-02-13\",\"ÈŞ´ë¿ë °¡½º·»Áö, ¹° 2L * 14\",20000+1000*14,620154,9,10);");
-	            stmt.executeUpdate("INSERT INTO car_rent VALUES (3,7,905432,14,\"2020-02-16\",\"2020-02-23\",60000*8,\"2020-02-15\",\"ÈŞ´ë¿ë °¡½º·»Áö, »ï°ã»ì 3kg, ¹° 2L * 16\",20000+50000+1000*16,905432,7,14);");
-	            stmt.executeUpdate("INSERT INTO car_rent VALUES (4,10,320156,1,\"2020-02-19\",\"2020-02-27\",65000*9,\"2020-02-18\",\"¹° 2L * 18\",1000*18,320156,10,1);");
-	            stmt.executeUpdate("INSERT INTO car_rent VALUES (5,15,426583,7,\"2020-02-20\",\"2020-02-28\",80000*9,\"2020-02-19\",\"½Ò 1kg, ¹° 2L * 18\",30000+1000*18,426583,15,7);");
-	            stmt.executeUpdate("INSERT INTO car_rent VALUES (6,3,201603,11,\"2020-02-24\",\"2020-03-01\",55000*6,\"2020-02-23\",\"¹° 2L * 12\",1000*12,201603,3,11);");
-	            stmt.executeUpdate("INSERT INTO car_rent VALUES (7,14,302154,9,\"2020-03-10\",\"2020-03-16\",80000*7,\"2020-03-09\",\"ÈŞ´ë¿ë °¡½º·»Áö, »ï°ã»ì 3kg, ¹° 2L * 14\",20000+50000+1000*14,302154,14,9);");
-	            stmt.executeUpdate("INSERT INTO car_rent VALUES (8,11,301264,13,\"2020-03-12\",\"2020-03-16\",65000*5,\"2020-03-11\",\"¹° 2L * 10\",1000*10,301264,11,13);");
-	            stmt.executeUpdate("INSERT INTO car_rent VALUES (9,5,532015,15,\"2020-03-21\",\"2020-03-24\",60000*4,\"2020-03-20\",\"ÃÊÄİ·¿ 8°³, ¹° 2L * 8\",1000*8+1000*8,532015,5,15);");
-	            stmt.executeUpdate("INSERT INTO car_rent VALUES (10,2,862513,2,\"2020-03-24\",\"2020-03-26\",50000*3,\"2020-03-23\",\"¹° 2L * 6\",1000*6,862513,2,2);");
-	            stmt.executeUpdate("INSERT INTO car_rent VALUES (11,13,201543,3,\"2020-04-02\",\"2020-04-05\",70000*4,\"2020-04-01\",\"¹° 2L * 8\",1000*8,201543,13,3);");
-	            stmt.executeUpdate("INSERT INTO car_rent VALUES (12,1,753216,6,\"2020-04-10\",\"2020-04-13\",50000*4,\"2020-04-09\",\"¹° 2L * 8\",1000*8,753216,1,6);");
-	            stmt.executeUpdate("INSERT INTO car_rent VALUES (13,12,102436,8,\"2020-04-16\",\"2020-04-19\",65000*3,\"2020-04-15\",\"ÃÊÄİ·¿ 3°³, ¹° 2L * 6\",1000*6+1000*3,102436,12,8);");
-	            stmt.executeUpdate("INSERT INTO car_rent VALUES (14,6,510546,4,\"2020-04-25\",\"2020-04-27\",60000*3,\"2020-04-24\",\"¹° 2L * 6\",1000*6,510546,6,4);");
-	            stmt.executeUpdate("INSERT INTO car_rent VALUES (15,8,105468,5,\"2020-05-04\",\"2020-05-08\",65000*5,\"2020-05-03\",\"¹° 2L * 10\",1000*10,105468,8,5);");
+	            stmt.executeUpdate("INSERT INTO car_rent VALUES (1,4,762531,12,\"2020-02-10\",\"2020-02-15\",55000*6,\"2020-02-09\",\"ë¬¼ 2L * 12\",1000*12,762531,4,12);");
+	            stmt.executeUpdate("INSERT INTO car_rent VALUES (2,9,620154,10,\"2020-02-14\",\"2020-02-20\",65000*7,\"2020-02-13\",\"íœ´ëŒ€ìš© ê°€ìŠ¤ë Œì§€, ë¬¼ 2L * 14\",20000+1000*14,620154,9,10);");
+	            stmt.executeUpdate("INSERT INTO car_rent VALUES (3,7,905432,14,\"2020-02-16\",\"2020-02-23\",60000*8,\"2020-02-15\",\"íœ´ëŒ€ìš© ê°€ìŠ¤ë Œì§€, ì‚¼ê²¹ì‚´ 3kg, ë¬¼ 2L * 16\",20000+50000+1000*16,905432,7,14);");
+	            stmt.executeUpdate("INSERT INTO car_rent VALUES (4,10,320156,1,\"2020-02-19\",\"2020-02-27\",65000*9,\"2020-02-18\",\"ë¬¼ 2L * 18\",1000*18,320156,10,1);");
+	            stmt.executeUpdate("INSERT INTO car_rent VALUES (5,15,426583,7,\"2020-02-20\",\"2020-02-28\",80000*9,\"2020-02-19\",\"ìŒ€ 1kg, ë¬¼ 2L * 18\",30000+1000*18,426583,15,7);");
+	            stmt.executeUpdate("INSERT INTO car_rent VALUES (6,3,201603,11,\"2020-02-24\",\"2020-03-01\",55000*6,\"2020-02-23\",\"ë¬¼ 2L * 12\",1000*12,201603,3,11);");
+	            stmt.executeUpdate("INSERT INTO car_rent VALUES (7,14,302154,9,\"2020-03-10\",\"2020-03-16\",80000*7,\"2020-03-09\",\"íœ´ëŒ€ìš© ê°€ìŠ¤ë Œì§€, ì‚¼ê²¹ì‚´ 3kg, ë¬¼ 2L * 14\",20000+50000+1000*14,302154,14,9);");
+	            stmt.executeUpdate("INSERT INTO car_rent VALUES (8,11,301264,13,\"2020-03-12\",\"2020-03-16\",65000*5,\"2020-03-11\",\"ë¬¼ 2L * 10\",1000*10,301264,11,13);");
+	            stmt.executeUpdate("INSERT INTO car_rent VALUES (9,5,532015,15,\"2020-03-21\",\"2020-03-24\",60000*4,\"2020-03-20\",\"ì´ˆì½œë › 8ê°œ, ë¬¼ 2L * 8\",1000*8+1000*8,532015,5,15);");
+	            stmt.executeUpdate("INSERT INTO car_rent VALUES (10,2,862513,2,\"2020-03-24\",\"2020-03-26\",50000*3,\"2020-03-23\",\"ë¬¼ 2L * 6\",1000*6,862513,2,2);");
+	            stmt.executeUpdate("INSERT INTO car_rent VALUES (11,13,201543,3,\"2020-04-02\",\"2020-04-05\",70000*4,\"2020-04-01\",\"ë¬¼ 2L * 8\",1000*8,201543,13,3);");
+	            stmt.executeUpdate("INSERT INTO car_rent VALUES (12,1,753216,6,\"2020-04-10\",\"2020-04-13\",50000*4,\"2020-04-09\",\"ë¬¼ 2L * 8\",1000*8,753216,1,6);");
+	            stmt.executeUpdate("INSERT INTO car_rent VALUES (13,12,102436,8,\"2020-04-16\",\"2020-04-19\",65000*3,\"2020-04-15\",\"ì´ˆì½œë › 3ê°œ, ë¬¼ 2L * 6\",1000*6+1000*3,102436,12,8);");
+	            stmt.executeUpdate("INSERT INTO car_rent VALUES (14,6,510546,4,\"2020-04-25\",\"2020-04-27\",60000*3,\"2020-04-24\",\"ë¬¼ 2L * 6\",1000*6,510546,6,4);");
+	            stmt.executeUpdate("INSERT INTO car_rent VALUES (15,8,105468,5,\"2020-05-04\",\"2020-05-08\",65000*5,\"2020-05-03\",\"ë¬¼ 2L * 10\",1000*10,105468,8,5);");
 	           
-	            stmt.executeUpdate("INSERT INTO repair_info VALUES (1,4,12,12,762531,\"¾Õ ¹üÆÛ ÆÄ¼Õ\",\"2020-02-13\",100000,\"2020-02-17\",\"µÚ µµ»ö\",4,12,762531,12);");
-	            stmt.executeUpdate("INSERT INTO repair_info VALUES (2,9,10,10,620154,\"¿À¸¥ÂÊ ¾Õ Å¸ÀÌ¾î ÆãÅ©\",\"2020-02-15\",200000,\"2020-02-22\",\"¿£Áø ¿ÀÀÏ ±³Ã¼\",9,10,620154,10);");
-	            stmt.executeUpdate("INSERT INTO repair_info VALUES (3,7,14,14,905432,\"¿ŞÂÊ µÚ Å¸ÀÌ¾î ÆãÅ©\",\"2020-02-17\",200000,\"2020-02-25\",\"³Ã°¢¼ö ±³Ã¼\",7,14,905432,14);");
-	            stmt.executeUpdate("INSERT INTO repair_info VALUES (4,10,1,1,320156,\"¾Õ ¹üÆÛ ÆÄ¼Õ\",\"2020-02-19\",100000,\"2020-03-01\",\"¿îÀü¼® ½ÃÆ® ±³Ã¼\",10,1,320156,1);");
-	            stmt.executeUpdate("INSERT INTO repair_info VALUES (5,15,7,7,426583,\"¿ŞÂÊ ¾ÕÅ¸ÀÌ¾î ÆãÅ©\",\"2020-02-20\",200000,\"2020-03-02\",\"µŞÁÂ¼® ½ÃÆ® ±³Ã¼\",15,7,426583,7);");
-	            stmt.executeUpdate("INSERT INTO repair_info VALUES (6,3,11,11,201603,\"µÚ µµ»ö ¹ş°ÜÁü\",\"2020-02-21\",50000,\"2020-03-03\",\"¿îÀü¼® ¾ÈÀüº§Æ® ¼ö¸®\",3,11,201603,11);");
-	            stmt.executeUpdate("INSERT INTO repair_info VALUES (7,14,9,9,302154,\"µÚÃ¢¹® ÆÄ¼Õ\",\"2020-03-01\",150000,\"2020-03-18\",\"ÈÄ¹Ìµî ±³Ã¼\",14,9,302154,9);");
-	            stmt.executeUpdate("INSERT INTO repair_info VALUES (8,11,13,13,301264,\"¿ŞÂÊ »çÀÌµå ¹Ì·¯ ÆÄ¼Õ\",\"2020-03-13\",180000,\"2020-03-18\",\"¿ŞÂÊ ¾Õ µµ»ö\",11,13,301264,13);");
-	            stmt.executeUpdate("INSERT INTO repair_info VALUES (9,5,15,15,532015,\"¿ŞÂÊ µÚÅ¸ÀÌ¾î ÆãÅ© ¿À¸¥ÂÊ µÚÅ¸ÀÌ¾î ÆãÅ©\",\"2020-03-15\",200000+200000,\"2020-03-26\",\"¿£Áø ¿ÀÀÏ ±³Ã¼\",5,15,532015,15);");
-	            stmt.executeUpdate("INSERT INTO repair_info VALUES (10,2,2,2,862513,\"µÚ ¹üÆÛ ÆÄ¼Õ\",\"2020-03-17\",100000,\"2020-03-28\",\"Á¶¼ö¼® ¾ÈÀüº§Æ® ¼ö¸®\",2,2,862513,2);");
-	            stmt.executeUpdate("INSERT INTO repair_info VALUES (11,13,3,3,201543,\"¿ŞÂÊ ¾Õ Å¸ÀÌ¾î ÆãÅ©\",\"2020-03-20\",200000,\"2020-04-07\",\"¹é¹Ì·¯ ±³Ã¼\",13,3,201543,3);");
-	            stmt.executeUpdate("INSERT INTO repair_info VALUES (12,1,6,6,753216,\"¿À¸¥ÂÊ µÚÅ¸ÀÌ¾î ÆãÅ© µÚ ¹üÆÛ ÆÄ¼Õ\",\"2020-03-23\",200000+100000,\"2020-04-15\",\"ÈÄ¹Ìµî ¹× ³»ºÎµî ±³Ã¼\",1,6,753216,6);");
-	            stmt.executeUpdate("INSERT INTO repair_info VALUES (13,12,8,8,102436,\"¿À¸¥ÂÊ »çÀÌµå ¹Ì·¯ ÆÄ¼Õ\",\"2020-04-13\",180000,\"2020-04-21\",\"Á¶¼ö¼® ½ÃÆ® ±³Ã¼\",12,8,102436,8);");
-	            stmt.executeUpdate("INSERT INTO repair_info VALUES (14,6,4,4,510546,\"¾Õ ¹üÆÛ ÆÄ¼Õ ¿ŞÂÊ  »çÀÌµå ¹Ì·¯ ÆÄ¼Õ\",\"2020-04-17\",100000+180000,\"2020-04-29\",\"¿ŞÂÊ ¾Õ Å¸ÀÌ¾î ±³Ã¼\",6,4,510546,4);");
-	            stmt.executeUpdate("INSERT INTO repair_info VALUES (15,8,5,5,105468,\"¾Õ ¹üÆÛ ÆÄ¼Õ ¿ŞÂÊ ¾Õ Å¸ÀÌ¾î ÆãÅ©\",\"2020-05-3\",100000+200000,\"2020-05-10\",\"³Ã°¢¼ö ±³Ã¼ ¹× ¿£Áø ¿ÀÀÏ ±³Ã¼\",8,5,105468,5);");
+	            stmt.executeUpdate("INSERT INTO repair_info VALUES (1,4,12,12,762531,\"ì• ë²”í¼ íŒŒì†\",\"2020-02-13\",100000,\"2020-02-17\",\"ë’¤ ë„ìƒ‰\",4,12,762531,12);");
+	            stmt.executeUpdate("INSERT INTO repair_info VALUES (2,9,10,10,620154,\"ì˜¤ë¥¸ìª½ ì• íƒ€ì´ì–´ í‘í¬\",\"2020-02-15\",200000,\"2020-02-22\",\"ì—”ì§„ ì˜¤ì¼ êµì²´\",9,10,620154,10);");
+	            stmt.executeUpdate("INSERT INTO repair_info VALUES (3,7,14,14,905432,\"ì™¼ìª½ ë’¤ íƒ€ì´ì–´ í‘í¬\",\"2020-02-17\",200000,\"2020-02-25\",\"ëƒ‰ê°ìˆ˜ êµì²´\",7,14,905432,14);");
+	            stmt.executeUpdate("INSERT INTO repair_info VALUES (4,10,1,1,320156,\"ì• ë²”í¼ íŒŒì†\",\"2020-02-19\",100000,\"2020-03-01\",\"ìš´ì „ì„ ì‹œíŠ¸ êµì²´\",10,1,320156,1);");
+	            stmt.executeUpdate("INSERT INTO repair_info VALUES (5,15,7,7,426583,\"ì™¼ìª½ ì•íƒ€ì´ì–´ í‘í¬\",\"2020-02-20\",200000,\"2020-03-02\",\"ë’·ì¢Œì„ ì‹œíŠ¸ êµì²´\",15,7,426583,7);");
+	            stmt.executeUpdate("INSERT INTO repair_info VALUES (6,3,11,11,201603,\"ë’¤ ë„ìƒ‰ ë²—ê²¨ì§\",\"2020-02-21\",50000,\"2020-03-03\",\"ìš´ì „ì„ ì•ˆì „ë²¨íŠ¸ ìˆ˜ë¦¬\",3,11,201603,11);");
+	            stmt.executeUpdate("INSERT INTO repair_info VALUES (7,14,9,9,302154,\"ë’¤ì°½ë¬¸ íŒŒì†\",\"2020-03-01\",150000,\"2020-03-18\",\"í›„ë¯¸ë“± êµì²´\",14,9,302154,9);");
+	            stmt.executeUpdate("INSERT INTO repair_info VALUES (8,11,13,13,301264,\"ì™¼ìª½ ì‚¬ì´ë“œ ë¯¸ëŸ¬ íŒŒì†\",\"2020-03-13\",180000,\"2020-03-18\",\"ì™¼ìª½ ì• ë„ìƒ‰\",11,13,301264,13);");
+	            stmt.executeUpdate("INSERT INTO repair_info VALUES (9,5,15,15,532015,\"ì™¼ìª½ ë’¤íƒ€ì´ì–´ í‘í¬ ì˜¤ë¥¸ìª½ ë’¤íƒ€ì´ì–´ í‘í¬\",\"2020-03-15\",200000+200000,\"2020-03-26\",\"ì—”ì§„ ì˜¤ì¼ êµì²´\",5,15,532015,15);");
+	            stmt.executeUpdate("INSERT INTO repair_info VALUES (10,2,2,2,862513,\"ë’¤ ë²”í¼ íŒŒì†\",\"2020-03-17\",100000,\"2020-03-28\",\"ì¡°ìˆ˜ì„ ì•ˆì „ë²¨íŠ¸ ìˆ˜ë¦¬\",2,2,862513,2);");
+	            stmt.executeUpdate("INSERT INTO repair_info VALUES (11,13,3,3,201543,\"ì™¼ìª½ ì• íƒ€ì´ì–´ í‘í¬\",\"2020-03-20\",200000,\"2020-04-07\",\"ë°±ë¯¸ëŸ¬ êµì²´\",13,3,201543,3);");
+	            stmt.executeUpdate("INSERT INTO repair_info VALUES (12,1,6,6,753216,\"ì˜¤ë¥¸ìª½ ë’¤íƒ€ì´ì–´ í‘í¬ ë’¤ ë²”í¼ íŒŒì†\",\"2020-03-23\",200000+100000,\"2020-04-15\",\"í›„ë¯¸ë“± ë° ë‚´ë¶€ë“± êµì²´\",1,6,753216,6);");
+	            stmt.executeUpdate("INSERT INTO repair_info VALUES (13,12,8,8,102436,\"ì˜¤ë¥¸ìª½ ì‚¬ì´ë“œ ë¯¸ëŸ¬ íŒŒì†\",\"2020-04-13\",180000,\"2020-04-21\",\"ì¡°ìˆ˜ì„ ì‹œíŠ¸ êµì²´\",12,8,102436,8);");
+	            stmt.executeUpdate("INSERT INTO repair_info VALUES (14,6,4,4,510546,\"ì• ë²”í¼ íŒŒì† ì™¼ìª½  ì‚¬ì´ë“œ ë¯¸ëŸ¬ íŒŒì†\",\"2020-04-17\",100000+180000,\"2020-04-29\",\"ì™¼ìª½ ì• íƒ€ì´ì–´ êµì²´\",6,4,510546,4);");
+	            stmt.executeUpdate("INSERT INTO repair_info VALUES (15,8,5,5,105468,\"ì• ë²”í¼ íŒŒì† ì™¼ìª½ ì• íƒ€ì´ì–´ í‘í¬\",\"2020-05-3\",100000+200000,\"2020-05-10\",\"ëƒ‰ê°ìˆ˜ êµì²´ ë° ì—”ì§„ ì˜¤ì¼ êµì²´\",8,5,105468,5);");
 	            
 	            stmt.executeUpdate("INSERT INTO car_rent_has_car_check_info VALUES (1,1);");
 	            stmt.executeUpdate("INSERT INTO car_rent_has_car_check_info VALUES (2,2);");
@@ -354,13 +354,13 @@ public class Administrator extends JFrame implements ActionListener {
 	            stmt.executeUpdate("INSERT INTO car_rent_has_car_check_info VALUES (14,14);");
 	            stmt.executeUpdate("INSERT INTO car_rent_has_car_check_info VALUES (15,15);");
 	           
-	            System.out.println("DB ÃÊ±âÈ­ ¿Ï·á");
+	            System.out.println("DB ì´ˆê¸°í™” ì™„ë£Œ");
 	            
 	            //2020.06.11
 	           
 	       
 	         } catch (Exception e4) {
-	            System.out.println("DB ÃÊ±âÈ­ ½ÇÆĞ" + e4);
+	            System.out.println("DB ì´ˆê¸°í™” ì‹¤íŒ¨" + e4);
 	         }	         
 	      }
 	   }
@@ -410,16 +410,16 @@ public class Administrator extends JFrame implements ActionListener {
 	        	 System.out.println("search");
 	        	 stmt = con_adm.createStatement();
 	        	 
-	        	 Search search = new Search(con_adm);//ÀÓÁØ °ü¸®ÀÚ 1¹øÂ° Ãß°¡
-	        	 search.setVisible(true);//ÀÓÁØ °ü¸®ÀÚ ¸¶Áö¸· Ãß°¡
+	        	 Search search = new Search(con_adm);
+	        	 search.setVisible(true);
 	        	 //search
 	        	 //RepairShop shop = new RepairShop(con_adm);
 	        	 
 	        	 //shop.setVisible(true);
 	         }
 	      } catch (Exception e2) {
-	         System.out.println("Äõ¸® ÀĞ±â ½ÇÆĞ :" + e2);
-	         System.out.println("¿À·ù ¹ß»ı!"); 
+	         System.out.println("ì¿¼ë¦¬ ì½ê¸° ì‹¤íŒ¨ :" + e2);
+	         System.out.println("ì˜¤ë¥˜ ë°œìƒ!"); 
 	      }
 
    }
