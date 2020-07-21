@@ -13,7 +13,7 @@ import javax.swing.*;
 
 public class User extends JFrame {
 	
-	// ½Ã¿ëÀÚ ÀÎÅÍÆäÀÌ½º Ãß°¡
+	// ì‹œìš©ì ì¸í„°í˜ì´ìŠ¤ ì¶”ê°€
    JButton btn_user_search,btn_user_choose,btn_user_rent;
    JPanel pn,pn_user;
    JTextArea txtResult;
@@ -28,7 +28,7 @@ public class User extends JFrame {
    ResultSet rs;
    
    public User(Connection con) {
-      super("»ç¿ëÀÚ");
+      super("ì‚¬ìš©ì");
       layInit();
       con_user = con;
       setBounds(200, 200, 800, 700);
@@ -37,25 +37,23 @@ public class User extends JFrame {
 
    public void layInit() {
 	   
-	  pn=new JPanel();
-	  pn_user=new JPanel();
-	  
-	  ladate=new JLabel("³¯Â¥");
-	  
-	  rentid = new JLabel("´ë¿©¹øÈ£");
-      regid=new JLabel("µî·ÏID");
-      license=new JLabel("¸éÇãÁõ");
-      rent_compid=new JLabel("´ë¿©È¸»çID");
-      startdate=new JLabel("½ÃÀÛÀÏ");
-      period=new JLabel("¸¶°¨ÀÏ");
-      price=new JLabel("Ã»±¸¿ä±İ");
-      price_until=new JLabel("³³ÀÔ±âÇÑ");
-      add_content=new JLabel("±âÅ¸Ã»±¸³»¿ª");
-      add_price=new JLabel("±âÅ¸Ã»±¸¿ä±İ");
-      re_license=new JLabel("¸éÇãÁõ ÀçÈ®ÀÎ");
-      re_regid=new JLabel("µî·ÏID ÀçÈ®ÀÎ");
-      re_rent_compid=new JLabel("´ë¿©È¸»çID ÀçÈ®ÀÎ");
-      choose_regid=new JLabel("¼±ÅÃÂ÷·® µî·ÏID");
+      pn=new JPanel();
+      pn_user=new JPanel();
+      ladate=new JLabel("ë‚ ì§œ");
+      rentid = new JLabel("ëŒ€ì—¬ë²ˆí˜¸");
+      regid=new JLabel("ë“±ë¡ID");
+      license=new JLabel("ë©´í—ˆì¦");
+      rent_compid=new JLabel("ëŒ€ì—¬íšŒì‚¬ID");
+      startdate=new JLabel("ì‹œì‘ì¼");
+      period=new JLabel("ë§ˆê°ì¼");
+      price=new JLabel("ì²­êµ¬ìš”ê¸ˆ");
+      price_until=new JLabel("ë‚©ì…ê¸°í•œ");
+      add_content=new JLabel("ê¸°íƒ€ì²­êµ¬ë‚´ì—­");
+      add_price=new JLabel("ê¸°íƒ€ì²­êµ¬ìš”ê¸ˆ");
+      re_license=new JLabel("ë©´í—ˆì¦ ì¬í™•ì¸");
+      re_regid=new JLabel("ë“±ë¡ID ì¬í™•ì¸");
+      re_rent_compid=new JLabel("ëŒ€ì—¬íšŒì‚¬ID ì¬í™•ì¸");
+      choose_regid=new JLabel("ì„ íƒì°¨ëŸ‰ ë“±ë¡ID");
       
       indate=new JTextField();
       
@@ -74,9 +72,9 @@ public class User extends JFrame {
       inre_rent_compid=new JTextField();
       inchoose_regid=new JTextField();
       
-      btn_user_search=new JButton("°Ë»ö");
-      btn_user_choose=new JButton("¼±ÅÃ");
-      btn_user_rent=new JButton("´ë¿©");
+      btn_user_search=new JButton("ê²€ìƒ‰");
+      btn_user_choose=new JButton("ì„ íƒ");
+      btn_user_rent=new JButton("ëŒ€ì—¬");
       
       pn_user.add(rentid);
       pn_user.add(inrentid);
@@ -106,22 +104,20 @@ public class User extends JFrame {
       pn_user.add(inre_rent_compid);
       
       DML = new Container();
-	  DML.setLayout(new GridLayout(1,7));
+      DML.setLayout(new GridLayout(1,7));
       DML.add(ladate);
-	  DML.add(indate);
+      DML.add(indate);
       DML.add(btn_user_search);
       
-	  DML.add(choose_regid);
-	  DML.add(inchoose_regid);
-	  DML.add(btn_user_choose);
-	  DML.add(btn_user_rent);
+      DML.add(choose_regid);
+      DML.add(inchoose_regid);
+      DML.add(btn_user_choose);
+      DML.add(btn_user_rent);
       
-	  pn.add(DML);
-	 // pn.add(date);
-	  //pn_user.add(DML);
+      pn.add(DML);
       
       txtResult = new JTextArea();
-	  txtResult.setEditable(false);
+      txtResult.setEditable(false);
       JScrollPane scrollPane = new JScrollPane(txtResult);
       
       pn_user.setLayout(new GridLayout(13,2));
@@ -132,9 +128,9 @@ public class User extends JFrame {
       
       pn.setVisible(true); 
       pn_user.setVisible(false);
-	  txtResult.setVisible(false);
+      txtResult.setVisible(false);
       
-      btn_user_search.addActionListener(new ActionListenersearch_DML());///»ç¿ëÀÚ °Ë»ö±â´É ¹öÆ°	
+      btn_user_search.addActionListener(new ActionListenersearch_DML());///ì‚¬ìš©ì ê²€ìƒ‰ê¸°ëŠ¥ ë²„íŠ¼	
       btn_user_choose.addActionListener(new ActionListenerchoose_DML());
       btn_user_rent.addActionListener(new ActionListenerrent_DML());
    }
@@ -144,8 +140,8 @@ public class User extends JFrame {
  
    //@Override
  //user section
-   //°Ë»ö±â´É -> ´ë¿©µÇÁö ¾ÊÀº Â÷ ¹× ´ë¿©¸ñ·Ï¿¡ ÀÖÀ¸³ª ¸¸·á±â°£ Áö³­ Â÷ Ãâ·Â
-   private class ActionListenersearch_DML implements ActionListener{//ÀüÃ¼ Ãß°¡
+   //ê²€ìƒ‰ê¸°ëŠ¥ -> ëŒ€ì—¬ë˜ì§€ ì•Šì€ ì°¨ ë° ëŒ€ì—¬ëª©ë¡ì— ìˆìœ¼ë‚˜ ë§Œë£Œê¸°ê°„ ì§€ë‚œ ì°¨ ì¶œë ¥
+   private class ActionListenersearch_DML implements ActionListener{//ì „ì²´ ì¶”ê°€
 	      public void actionPerformed(ActionEvent e) {
 	    	  pn_user.setVisible(false);
 	    	  txtResult.setVisible(true);
@@ -156,21 +152,21 @@ public class User extends JFrame {
 		            String sql = "select * from car where car_regid NOT IN ( select car_regid from car_rent) OR car_regid IN (select car_regid from car_rent where DATEDIFF(STR_TO_DATE('"+indate.getText()+"','%Y-%m-%d'),car_rentperiod)>0)";
 		            txtResult.setText("");
 		            rs=stmt.executeQuery(sql);
-		            txtResult.setText("µî·Ï¹øÈ£      Â÷¸í          Â÷¹øÈ£       ½ÂÂ÷ÀÎ¿ø     Á¦Á¶È¸»ç          Á¦Á¶¿¬µµ       ´©ÀûÁÖÇà°Å¸®          ´ë¿©ºñ¿ë          ´ë¿©È¸»çID    µî·ÏÀÏÀÚ          ´ë¿©È¸»çIDÀçÈ®ÀÎ\n");
+		            txtResult.setText("ë“±ë¡ë²ˆí˜¸      ì°¨ëª…          ì°¨ë²ˆí˜¸       ìŠ¹ì°¨ì¸ì›     ì œì¡°íšŒì‚¬          ì œì¡°ì—°ë„       ëˆ„ì ì£¼í–‰ê±°ë¦¬          ëŒ€ì—¬ë¹„ìš©          ëŒ€ì—¬íšŒì‚¬ID    ë“±ë¡ì¼ì          ëŒ€ì—¬íšŒì‚¬IDì¬í™•ì¸\n");
 		            while(rs.next()) {
 		            	String str = rs.getInt(1) + "\t" + rs.getString(2) + "\t" + rs.getInt(3) + "\t" + rs.getInt(4) + "\t"+ rs.getString(5) + "\t"+ rs.getInt(6) + "\t"+ rs.getInt(7) + rs.getInt(8) + "\t"+ rs.getInt(9) + "\t" + rs.getString(10) + "\t" + rs.getInt(11) + "\n";
 		            	txtResult.append(str);
 		            }    
 	         }catch (Exception e1) {
-	               System.out.println("Äõ¸® ÀĞ±â ½ÇÆĞ :" + e1);
-	               System.out.println("¿À·ù ¹ß»ı!"); 
+	               System.out.println("ì¿¼ë¦¬ ì½ê¸° ì‹¤íŒ¨ :" + e1);
+	               System.out.println("ì˜¤ë¥˜ ë°œìƒ!"); 
 	         }
 	      }
 	   }
    
 
-   //¼±ÅÃ±â´É ´©¸£¸é ºóÄ­¿¡ ÀÔ·ÂÇÑ regid¿¡ ÇØ´çÇÏ´Â ÀÚµ¿Â÷ Á¤º¸ Ç¥½Ã
-   private class ActionListenerchoose_DML implements ActionListener{//ÀüÃ¼ Ãß°¡
+   //ì„ íƒê¸°ëŠ¥ ëˆ„ë¥´ë©´ ë¹ˆì¹¸ì— ì…ë ¥í•œ regidì— í•´ë‹¹í•˜ëŠ” ìë™ì°¨ ì •ë³´ í‘œì‹œ
+   private class ActionListenerchoose_DML implements ActionListener{//ì „ì²´ ì¶”ê°€
 	      public void actionPerformed(ActionEvent e) {
 	    	  pn_user.setVisible(true);
 	    	  txtResult.setVisible(true);
@@ -181,9 +177,9 @@ public class User extends JFrame {
 	            String sql = "select * from car where car_regid = "+inchoose_regid.getText()+"";
 	            txtResult.setText("");
 	            rs=stmt.executeQuery(sql);
-	            txtResult.setText("¾Æ·¡ÀÇ µî·ÏID, ´ë¿©È¸»çID¸¦ ÀÌ¿ëÇÏ¿© ¼±ÅÃÇÑ Â÷¸¦ ´ë¿©ÇÏ½Ã¿À.\n");
+	            txtResult.setText("ì•„ë˜ì˜ ë“±ë¡ID, ëŒ€ì—¬íšŒì‚¬IDë¥¼ ì´ìš©í•˜ì—¬ ì„ íƒí•œ ì°¨ë¥¼ ëŒ€ì—¬í•˜ì‹œì˜¤.\n");
 	            while(rs.next()) {
-	            	String str0 = "µî·ÏID : " + rs.getInt(1) + "\t" + "Â÷¸í : " + rs.getString(2) + "\t" +  "´ë¿©È¸»çID : " + rs.getInt(9)+"\n";
+	            	String str0 = "ë“±ë¡ID : " + rs.getInt(1) + "\t" + "ì°¨ëª… : " + rs.getString(2) + "\t" +  "ëŒ€ì—¬íšŒì‚¬ID : " + rs.getInt(9)+"\n";
 	            	txtResult.append(str0);
 	            	String str = rs.getInt(1) + "\t" + rs.getString(2) + "\t" + rs.getInt(3) + "\t" + rs.getInt(4) + "\t"+ rs.getString(5) + "\t"+ rs.getInt(6) + "\t"+ rs.getInt(7) + rs.getInt(8) + "\t"+ rs.getInt(9) + "\t" + rs.getString(10) + "\t" + rs.getInt(11) + "\n";
 	            	txtResult.append(str);
@@ -191,14 +187,14 @@ public class User extends JFrame {
 	            }
 	            
 	         }catch (Exception e1) {
-	               System.out.println("Äõ¸® ÀĞ±â ½ÇÆĞ :" + e1);
-	               System.out.println("¿À·ù ¹ß»ı!"); 
+	               System.out.println("ì¿¼ë¦¬ ì½ê¸° ì‹¤íŒ¨ :" + e1);
+	               System.out.println("ì˜¤ë¥˜ ë°œìƒ!"); 
 	         }
 	      }
 	   }
    
-   //´ë¿©±â´É->´ë¿© ´©·ê½Ã car_rent Å×ÀÌºí¿¡ Á¤º¸Ãß°¡
-   private class ActionListenerrent_DML implements ActionListener{//ÀüÃ¼ Ãß°¡
+   //ëŒ€ì—¬ê¸°ëŠ¥->ëŒ€ì—¬ ëˆ„ë£°ì‹œ car_rent í…Œì´ë¸”ì— ì •ë³´ì¶”ê°€
+   private class ActionListenerrent_DML implements ActionListener{//ì „ì²´ ì¶”ê°€
 	      public void actionPerformed(ActionEvent e) {
 	    	  pn_user.setVisible(true);
 	    	  txtResult.setVisible(true);
@@ -221,8 +217,8 @@ public class User extends JFrame {
 		             inre_rent_compid.setText("");
 		           
 		         }catch (Exception e1) {
-		               System.out.println("Äõ¸® ÀĞ±â ½ÇÆĞ :" + e1);
-		               System.out.println("¿À·ù ¹ß»ı!"); 
+		               System.out.println("ì¿¼ë¦¬ ì½ê¸° ì‹¤íŒ¨ :" + e1);
+		               System.out.println("ì˜¤ë¥˜ ë°œìƒ!"); 
 		         }
 		      }
 	      }
