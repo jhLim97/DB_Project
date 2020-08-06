@@ -27,8 +27,8 @@ public class Main extends JFrame implements ActionListener {
    ResultSet rs;
    String Driver = "";
    String url = "jdbc:mysql://localhost:3306/madang?&serverTimezone=Asia/Seoul&useSSL=false";
-   String userid = "madang";
-   String pwd = "madang";
+   String userid = "[userid]";
+   String pwd = "[password]";
    
    public Main() {
       super("캠핑카 대여시스템");
